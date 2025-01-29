@@ -1,0 +1,117 @@
+<!--
+Name: Quyen Vo
+Date 10/18/24
+Client/Server Programming; Lab 3
+Get the data input from localstorage and display it on this page
+-->
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listing Form</title>
+
+    <!-- for the input button style: https://www.w3docs.com/snippets/css/how-to-style-input-and-submit-buttons.html -->
+     <!-- https://www.w3schools.com/Tags/att_input_type_tel.asp -->
+    <style>        
+        body {
+            background-color: #c6caff;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            padding: 10px;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%; /* or any other percentage */
+        }
+
+        .container {
+            align-self: center;
+            background-color: rgb(255, 255, 255);
+            background-attachment: fixed;
+            border-radius: 8px;
+            max-width: 500px;
+            padding: 20px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #080808;
+        }
+
+        input {
+            display: block; /* 1. oh noes, my inputs are styled as block... */
+            color: black;
+            width: 60%;
+            border-radius: 8px;
+        }
+
+        input[type=button],
+        input[type=submit] {
+          background-color: #62529c;
+          border: none;
+          color: #fff;
+          font-family: "Comic Sans MS", "Comic Sans", cursive;
+          padding: 15px 30px;
+          text-decoration: none;
+          margin: 4px 2px;
+          max-width: 150px;
+          cursor: pointer;
+        }
+
+        label {
+            color: #0c0b0b;
+        }
+        p {
+            text-align: left;
+            color: #050505;
+        }
+
+         title {
+            text-shadow: 2px 2px #666666;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="eventDetails">
+        <div class="container">
+            <h2>Event Details</h2>
+            <p><strong>Title:</strong> <span id="title"></span></p>
+            <p><strong>Description:</strong> <span id="description"></span></p>
+            <p><strong>Location:</strong> <span id="location"></span></p>
+            <p><strong>Date:</strong> <span id="date"></span></p>
+            <p><strong>Time:</strong> <span id="time"></span></p>
+            <p><strong>Coordinator:</strong> <span id="coordinator"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Phone Number:</strong> <span id="phone"></span></p>
+        </div><br>
+    
+        <div class="container">
+            <h2>Hope to see you there!</h2>
+            <img src="https://media.tenor.com/eDeEF3NpXkgAAAAC/hi-mods-and-staff-ily.gif" alt="Smiling Wave" width="250" class="center"/>
+        </div><br>
+    </div>
+
+    <script>
+    // https://stackoverflow.com/questions/39310579/get-am-pm-from-html-time-input
+    // It felt weird to only get the time without any am/pm, post did explain it a bit
+    function getFormattedTime() {
+        const [h, m] = localStorage.getItem("eventTime").split(":");
+        return ((h % 12 ? h % 12 : 12) + ":" + m, h >= 12 ? 'PM' : 'AM');
+    }
+        //here is what you might want to put on the results page
+    window.addEventListener("load", function() {
+    document.getElementById("title").innerHTML = localStorage.getItem("eventTitle");
+    document.getElementById("location").innerHTML = localStorage.getItem("eventLocation");
+    document.getElementById("coordinator").innerHTML = localStorage.getItem("eventCoordinator");
+    document.getElementById("date").innerHTML = localStorage.getItem("eventDate");
+    document.getElementById("time").innerHTML = localStorage.getItem("eventTime") + " " + getFormattedTime();
+    document.getElementById("email").innerHTML = localStorage.getItem("eventEmail");
+    document.getElementById("phone").innerHTML = localStorage.getItem("eventPhone");
+    document.getElementById("description").innerHTML = localStorage.getItem("eventDescription");
+});
+
+    </script>
+</body>
