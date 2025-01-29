@@ -1,0 +1,278 @@
+<!--
+   Quyen Vo
+   Lab #4 Dynamic Pages
+   Create an order form for a coffee site with an interactive menu which allows the user to add to their order.
+   -->
+
+<!--
+   I also just went and used this to reformat the code as my original format was much more messier.
+   https://www.freeformatter.com/html-formatter.html#before-output
+   -->
+
+   <!DOCTYPE html>
+   <html lang="en">
+      <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Zips Coffee | Order</title>
+         <style>        
+            body {
+            background-color: #a1864e;
+            background-image: url('corkboard.png');
+            font-family: 'Trebuchet MS', sans-serif;
+            padding: 10px;
+            }
+            .container {
+            align-self: center;
+            background-color: rgb(231, 221, 130);
+            background-attachment: fixed;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            max-width: 800px;
+            padding: 20px;
+            margin: auto;
+            }
+            h1 {
+            text-align: center;
+            }
+            .thumbtack {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+            }
+            .centerText {
+            text-align: center;
+            }
+            input[type=button] {
+            width: 100%;
+            }
+            input[type=submit] {
+            background-color: #b94458;
+            border: none;
+            color: #fff;
+            padding: 15px 30px;
+            margin: 4px 2px;
+            max-width: 150px;
+            cursor: pointer;
+            width: 100%;
+            table-layout: fixed;
+            }
+            .container.space-between {  
+            display: flex;
+            justify-content: space-between;
+            }
+            table.center {
+            margin: auto;
+            width: 100%;
+            }
+            table th, table td {
+            padding: 10px;
+            text-align: center; 
+            }
+            .container {
+            text-align: center;
+            }
+            .menu-item {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            }
+            /*https://stackoverflow.com/questions/905033/how-to-use-hover-in-css*/
+            .hover {
+            display: none;
+            position: absolute;
+            top: 95%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color:rgba(248, 248, 255, 0.438);
+            color: rgb(0, 0, 0);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            white-space: nowrap;
+            }
+            .menu-item:hover .hover {
+            display: block;
+            }
+         </style>
+      </head>
+      <body>
+         <div class="container">
+            <table id="order" class="center">
+               <img src="thumbtack.png" alt="thumbtack" class="thumbtack">
+            </table>
+            <h2 style="text-align: center;">Zips Cafe Menu</h2>
+            <div style="text-align: center;">
+               <div class="menu-item">
+                  <img src="coffee.png" width="250" height="100" alt="Latte" class="menu-item" onclick="updateOrder('coffeeAmt')" style="cursor: pointer;">
+                  <div class="hover">a cup of <b>Coffee</b> - $4.50</div>
+               </div>
+               <div class="menu-item">
+                  <img src="frappe.png" width="250" height="100" alt="Cappuccino" class="menu-item" onclick="updateOrder('frappeAmt')" style="cursor: pointer;">
+                  <div class="hover">a delicious <b>Frapee</b> - $4.00</div>
+               </div>
+               <div class="menu-item">
+                  <img src="iced.png" width="250" height="100" alt="Espresso" class="menu-item" onclick="updateOrder('icedAmt')" style="cursor: pointer;">
+                  <div class="hover">a chilled <b>Iced Coffee</b> - $3.00</div>
+               </div>
+               <div class="menu-item">
+                  <img src="latte.png" width="250" height="100" alt="Espresso" class="menu-item" onclick="updateOrder('latteAmt')" style="cursor: pointer;">
+                  <div class="hover">a soothing <b>Latte</b> - $3.00</div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <div class="container">
+            <img src="thumbtack.png" alt="thumbtack" class="thumbtack">
+            <h1 style="text-align: center;">Order Form</h1>
+            <table id="order" class="center">
+               <thead>
+                  <tr>
+                     <th>Type</th>
+                     <th>Price</th>
+                     <th>Quantity</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Coffee</td>
+                     <td>$4.50</td>
+                     <td><input type="number" id="coffeeAmt" value="0" min="0" style="width: 60px;"></td>
+                  </tr>
+                  <tr>
+                     <td>Frappe</td>
+                     <td>$4.00</td>
+                     <td><input type="number" id="frappeAmt" value="0" min="0" style="width: 60px;"></td>
+                  </tr>
+                  <tr>
+                     <td>Iced Coffee</td>
+                     <td>$3.50</td>
+                     <td><input type="number" id="icedAmt" value="0" min="0" style="width: 60px;"></td>
+                  </tr>
+                  <tr>
+                     <td>Latte</td>
+                     <td>$3.00</td>
+                     <td><input type="number" id="latteAmt" value="0" min="0" style="width: 60px;"></td>
+                  </tr>
+               </tbody>
+               <tfoot>
+                  <tr>
+                     <td colspan="2">Total Cost</td>
+                     <td id="totalCost">$0.00</td>
+                  </tr>
+                  <tr>
+                     <td colspan="3">
+                        <div class="container space-between">
+                           <input type="submit" value="Calculate Total" id="total">
+                           <input type="submit" value="Clear" id="clear">
+                           <input type="submit" value="Submit Order" id="submit">
+                        </div>
+                     </td>
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </body>
+      <script>
+         const coffeeImg = ["coffee.png", "frappe.png", "iced.png", "latte.png"];
+         
+         const clearBtn = document.getElementById("clear");
+         const calculateBtn = document.getElementById("total");
+         const submitBtn = document.getElementById("submit");
+         
+         // https://www.w3schools.com/JS/js_let.asp
+         
+         // total costs
+         let totalCost = 0;
+         
+         // store the qty of the coffees
+         const coffee = {
+             coffeeAmt: 0,
+             frappeAmt: 0,
+             icedAmt: 0,
+             latteAmt: 0,
+         };
+         
+         // we store the values of the prices so we can reference them
+         const prices = {
+             coffeeAmt: 4.5,
+             frappeAmt: 4,
+             icedAmt: 3.5,
+             latteAmt: 3,
+         };
+         
+         // updates dictionary based on item
+         function updateOrder(item) {
+         
+             // sets the value of item quantity
+             // fixes issue with clicking image to increase quantity with input value
+             let itemQty = parseInt(document.getElementById(item).value) || 0
+             itemQty += 1
+         
+             coffee[item] = itemQty
+             document.getElementById(item).value = itemQty;
+         
+             UpdateTotals()
+         }
+         
+         // updates coffee qty totals when user clicks on image
+         function UpdateTotals() {
+             // this needs to change just within this funtcion
+                 let qtyTotal = 0
+         
+             for (const item in coffee) {
+                 const qty = parseInt(document.getElementById(item).value)
+                 const price = prices[item]
+         
+                 qtyTotal += qty * price;
+             }
+         
+             totalCost = qtyTotal.toFixed(2);
+         }
+         
+         // shows total on total cost
+         function calculateTotal() {
+             document.getElementById("totalCost").textContent = "$" + totalCost;
+         }
+         
+         
+         // a bit silly but it will update the totals based on input changes
+         document.getElementById("coffeeAmt").addEventListener("input", UpdateTotals);
+         document.getElementById("frappeAmt").addEventListener("input", UpdateTotals);
+         document.getElementById("icedAmt").addEventListener("input", UpdateTotals);
+         document.getElementById("latteAmt").addEventListener("input", UpdateTotals);
+         
+         // clears total and qty
+         clearBtn.addEventListener("click", function () {
+             document.getElementById('coffeeAmt').value = 0;
+             document.getElementById('frappeAmt').value = 0;
+             document.getElementById('icedAmt').value = 0;
+             document.getElementById('latteAmt').value = 0;
+             document.getElementById('totalCost').innerText = "$0.00";
+             
+             // https://www.pietschsoft.com/post/2015/09/05/javascript-basics-how-to-create-a-dictionary-with-keyvalue-pairs
+             // also reference to make dictionary
+             // used const instead of var
+             for (const key in coffee) {
+                 coffee[key] = 0
+             }
+         
+             totalCost = 0
+         });
+         
+         
+         calculateBtn.addEventListener("click", calculateTotal);
+         
+         submitBtn.addEventListener("click", function () {
+             if (totalCost == 0) {
+                 alert('Your total cost is $0. Please add items to your order.');
+                 event.preventDefault();
+             }
+             else {
+                 window.location.href = "checkout.html";
+             }
+         
+         });
+         
+      </script>
+   </html>
