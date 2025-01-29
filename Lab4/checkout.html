@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crazy Coffee | Order Complete</title>
+
+    <style>        
+        body {
+            background-color: #a1864e;
+            background-image: url('corkboard.png');
+            font-family: 'Trebuchet MS', sans-serif;
+            padding: 10px;
+        }
+        .container {
+            align-self: center;
+            background-color: rgb(231, 221, 130);
+            background-attachment: fixed;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            max-width: 800px;
+            padding: 20px;
+            margin: auto;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+         /* pg. 197 in the book */
+        tbody tr {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgba(190, 182, 106, 0);
+            border-bottom: 1px solid white;
+            color: #0a0a0a;
+            text-align: center;
+         }
+         tbody td {
+            padding: 0.75em;
+         }
+
+         .pintack {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+         }
+        
+        .coffee {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+         }
+
+         .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 25%; /* or any other percentage */
+        }
+
+         .centerText {
+            text-align: center;
+         }
+
+         input[type=button] {
+            width: 100%;
+         }
+         input[type=submit] {
+           background-color: #b94458;
+           border: none;
+           color: #fff;
+           padding: 15px 30px;
+           margin: 4px 2px;
+           max-width: 150px;
+           cursor: pointer;
+           width: 100%;
+           table-layout: fixed;
+         }
+        /*https://stackoverflow.com/questions/4108726/how-to-spread-elements-horizontally-evenly*/
+         .container.space-between {  
+            display: flex;
+            justify-content: space-between;
+          }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="thumbtack.png" alt="thumbtack" class="pintack">
+        <h1>Order Complete</h1>
+        <p>Enjoy your order!</p>
+        <img src="https://media.tenor.com/t3z7KkYLFosAAAAi/cofe-please.gif" alt="Emoji sipping coffee" width="100" class="center"/>
+    </div><br>
+</body>
+
+</html>
